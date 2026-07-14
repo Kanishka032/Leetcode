@@ -1,30 +1,21 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
+        int m=s1.length();
+        int n=s2.length();
 
-        if (s1.length() > s2.length()) return false;
-
-        int[] s1Count = new int[26];
-        int[] windowCount = new int[26];
-
-        // fill s1 frequency
-        for (int i = 0; i < s1.length(); i++) {
-            s1Count[s1.charAt(i) - 'a']++;
-            windowCount[s2.charAt(i) - 'a']++;
+        if(m>n){
+            return false;
         }
+        char[]a=s1.toCharArray();
+        Arrays.sort(a);
+        for(int i=0;i<=n-m;i++){
+            char[] b=s2.substring(i, i+m).toCharArray();
+            Arrays.sort(b);
 
-        if (Arrays.equals(s1Count, windowCount)) return true;
-
-        for (int i = s1.length(); i < s2.length(); i++) {
-
-            // add new char
-            windowCount[s2.charAt(i) - 'a']++;
-
-            // remove old char
-            windowCount[s2.charAt(i - s1.length()) - 'a']--;
-
-            if (Arrays.equals(s1Count, windowCount)) return true;
+            if(Arrays.equals(a,b)){
+                return true;
+            }
         }
-
         return false;
     }
 }
