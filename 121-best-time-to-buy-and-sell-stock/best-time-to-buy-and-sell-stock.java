@@ -1,19 +1,21 @@
 class Solution {
-    public int maxProfit(int[] prices) {
-        int max = Integer.MAX_VALUE; 
+    public int maxProfit(int[] price) {
+        //aaj ka price kal se bada hai toh profit
+        int smallest = Integer.MAX_VALUE;
         int profit = 0;
+        int maximum=0;
+        for (int i = 0; i < price.length; i++) {
 
-        for (int i = 0; i < prices.length; i++) {
-           
-            if (prices[i] < max) {
-                max = prices[i];
-            } 
-           
-            else if (prices[i] - max > profit) {
-                profit = prices[i] - max;
+            if (price[i] < smallest) {
+                smallest = price[i];
             }
-        }
+            profit = price[i] - smallest;
+            if(profit>maximum)
+            {
+                maximum=profit;
+            }
 
-        return profit;
+        }
+        return maximum;
     }
 }
