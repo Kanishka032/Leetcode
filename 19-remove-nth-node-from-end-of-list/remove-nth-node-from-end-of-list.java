@@ -9,30 +9,26 @@
  * }
  */
 class Solution {
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        int size = getSize(head);
-        if(n==size)
-        {
+    public ListNode removeNthFromEnd(ListNode head, int k) {
+        ListNode Current = head;
+        int size = 0;
+        while (Current != null) {
+            size++;
+            Current = Current.next;
+        }
+        if (k == size) {
             return head.next;
         }
-        ListNode temp = head;
-        for (int i = 1; i < size - n; i++) {
-            temp = temp.next;
-        }
+        System.out.println("Size :" + size);
+        ListNode first = head;
+        for (int i = 0; i < (size - k) - 1; i++) {
 
-        temp.next = temp.next.next;
+            System.out.println("value of i :" + i + " value :" + first.val);
+            first = first.next;
+
+        }
+        first.next = first.next.next;
+
         return head;
-    }
-
-    public int getSize(ListNode head) {
-        int count = 0;
-        ListNode temp = head;
-
-        while (temp != null) {
-            count++;
-            temp = temp.next;
-        }
-
-        return count;
     }
 }
